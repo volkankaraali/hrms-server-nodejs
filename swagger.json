@@ -1,0 +1,1136 @@
+{
+  "openapi": "3.0.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "is mi bu API",
+      "description": "A mern stack project",
+     "contact": {
+      "url": "https://github.com/volkankaraali"
+     }
+    },
+    "servers": [
+			{
+        "description": "local",
+				"url": "http://localhost:5000"
+			}
+		],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth":{
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    },
+    "paths": {
+      "/candidate/getall":{
+        "get":{
+          "summary": "gets all candidates ",
+          "tags": ["Candidate"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/candidate/getCv":{
+        "get":{
+          "summary": "get candidate cv ",
+          "tags": ["Candidate"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/city":{
+        "post":{
+          "summary": "add city ",
+          "tags": ["City"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "cityName":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        },
+        "get":{
+          "summary": "listed cities ",
+          "tags": ["City"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvEducation/getAllByCandidate":{
+        "get":{
+          "summary": "gets all educations by candidate ",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            },
+            {
+              "in":"query",
+              "name":"dateSortBy",
+              "schema":{
+                "type": "string",
+                "default":"desc"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvEducation":{
+        "post":{
+          "summary": "add education to cv ",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "schoolName":{
+                      "type": "string"
+                    },
+                    "department":{
+                      "type": "string"
+                    },
+                    "startedDate":{
+                      "type": "string"
+                    },
+                    "endedDate":{
+                      "type": "string"
+                    },
+                    "graduateTypeId":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvEduGraduateType":{
+        "post":{
+          "summary": "add edu graduate type",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "name":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+
+        },
+        "get":{
+          "summary": "get edu graduate types",
+          "tags": ["Cv"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+
+        }
+      },
+      "/cvExperience":{
+        "post":{
+          "summary": "add experince",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "companyName":{
+                      "type": "string"
+                    },
+                    "jobPosition":{
+                      "type": "string"
+                    },
+                    "startedDate":{
+                      "type": "string"
+                    },
+                    "endedDate":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvExperience/getAllByCandidate":{
+        "get":{
+          "summary": "gets all experience by candidate ",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            },
+            {
+              "in":"query",
+              "name":"dateSortBy",
+              "schema":{
+                "type": "string",
+                "default":"desc"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvLanguage":{
+        "post":{
+          "summary": "add language",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "name":{
+                      "type": "string"
+                    },
+                    "level":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvLanguage/getAllByCandidate":{
+        "get":{
+          "summary": "gets all languages by candidate ",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvSocialMedia":{
+        "post":{
+          "summary": "add social media",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "linkedinUrl":{
+                      "type": "string"
+                    },
+                    "githubUrl":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvSocialMedia/getAllByCandidate":{
+        "get":{
+          "summary": "get social media by candidate",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvAbility":{
+        "post":{
+          "summary": "add ability",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "name":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvAbility/getAllByCandidate":{
+        "get":{
+          "summary": "get ability by candidate",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvCoverLetter":{
+        "post":{
+          "summary": "add cover letter",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "text":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvCoverLetter/getAllByCandidate":{
+        "get":{
+          "summary": "get cover letter by candidate",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvImage":{
+        "post":{
+          "summary": "add image",
+          "tags": ["Cv"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "imageUrl":{
+                      "type": "string"
+                    },
+                    "candidateId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/cvImage/getAllByCandidate":{
+        "get":{
+          "summary": "get images by candidate",
+          "tags": ["Cv"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"candidateId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/employee/confirmEmployer":{
+        "post":{
+          "summary": "employee confirms employers ",
+          "tags": ["Employee"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "employeeId":{
+                      "type": "string"
+                    },
+                    "employerId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/employee/getall":{
+        "get":{
+          "summary": "gets all employee ",
+          "tags": ["Employee"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/employer/getall":{
+        "get":{
+          "summary": "gets all employers ",
+          "tags": ["Employer"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobAdvert":{
+        "post":{
+          "summary": "add job advert ",
+          "tags": ["Job Advert"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "jobDescription":{
+                      "type": "string"
+                    },
+                    "minSalary":{
+                      "type": "string"
+                    },
+                    "maxSalary":{
+                      "type": "string"
+                    },
+                    "openJobNumber":{
+                      "type": "string"
+                    },
+                    "applicationDeadline":{
+                      "type": "string"
+                    },
+                    "isActive":{
+                      "type": "string"
+                    },
+                    "jobPositionId":{
+                      "type": "string"
+                    },
+                    "cityId":{
+                      "type": "string"
+                    },
+                    "employerId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        },
+        "get":{
+          "summary": "get all job adverts ",
+          "tags": ["Job Advert"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"dateSortBy",
+              "schema":{
+                "type": "string",
+                "default":"desc"
+              },
+              "description": "sort desc or asc "
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobAdvert/getAllByEmployer":{
+        "get":{
+          "summary": "get all job adverts by employer ",
+          "tags": ["Job Advert"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"employerId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            },
+            {
+              "in":"query",
+              "name":"dateSortBy",
+              "schema":{
+                "type": "string",
+                "default":"desc"
+              },
+              "description": "sort desc or asc "
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobAdvert/updateActiveStatus":{
+        "put":{
+          "summary": "close or open job advert ",
+          "tags": ["Job Advert"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "description": "change job advert status. false or true",
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "jobAdvertId":{
+                      "type": "string"
+                    },
+                    "status":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobAdvertApplication":{
+        "get":{
+          "summary": "get all job advert application ",
+          "tags": ["Job Advert Application"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        },
+        "post":{
+          "summary": "add job advert application by candidate ",
+          "tags": ["Job Advert Application"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "candidateId":{
+                      "type": "string"
+                    },
+                    "jobAdvertId":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobAdvertApplication/getAllByJobAdvert":{
+        "get":{
+          "summary": "get all job advert applications by jobadvertId ",
+          "tags": ["Job Advert Application"],
+          "parameters": [
+            {
+              "in":"query",
+              "name":"jobadvertId",
+              "required": true,
+              "schema":{
+                "type": "string"
+              }
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobPosition":{
+        "post":{
+          "summary": "add job position ",
+          "tags": ["Job Position"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "jobName":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/jobPosition/getall":{
+        "get":{
+          "summary": "get all job positions ",
+          "tags": ["Job Position"],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/login":{
+        "post":{
+          "summary": "get loggin",
+          "tags": ["Login"],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "email":{
+                      "type": "string"
+                    },
+                    "password":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        }
+        
+      },
+      "/register/candidate":{
+        "post":{
+          "summary": "get register as candidate",
+          "tags": ["Register"],
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "firstName":{
+                      "type": "string"
+                    },
+                    "lastName":{
+                      "type": "string"
+                    },
+                    "userName":{
+                      "type": "string"
+                    },
+                    "email":{
+                      "type": "string"
+                    },
+                    "password":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/register/employer":{
+        "post":{
+          "summary": "get register as employer",
+          "tags": ["Register"],
+          
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "companyName":{
+                      "type": "string"
+                    },
+                    "webAdress":{
+                      "type": "string"
+                    },
+                    "phoneNumber":{
+                      "type": "string"
+                    },
+                    "userName":{
+                      "type": "string"
+                    },
+                    "email":{
+                      "type": "string"
+                    },
+                    "password":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/register/employee":{
+        "post":{
+          "summary": "get register as employee",
+          "tags": ["Register"],
+          
+          "requestBody":{
+            "content": {
+              "application/json":{
+                "schema":{
+                  "properties": {
+                    "firstName":{
+                      "type": "string"
+                    },
+                    "lastName":{
+                      "type": "string"
+                    },
+                    "userName":{
+                      "type": "string"
+                    },
+                    "email":{
+                      "type": "string"
+                    },
+                    "password":{
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "400":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/user/getalluser":{
+        "get":{
+          "summary": "gets all users ",
+          "tags": ["User"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      },
+      "/user/me":{
+        "get":{
+          "summary": "get user info",
+          "tags": ["User"],
+          "security":[
+            {
+              "bearerAuth": []
+            }
+          ],
+          "responses":{
+            "200":{
+              "description":"ok"
+            },
+            "404":{
+              "description":"fail"
+            }
+          }
+        }
+      }
+      
+    }
+}
